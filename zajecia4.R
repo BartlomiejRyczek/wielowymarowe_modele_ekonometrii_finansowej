@@ -114,7 +114,7 @@ simulationCCC <- cgarchsim(fit1, n.sim = 3000, m.sim = 1, startMethod = "sample"
 
 y<-simulationCCC@msim$simX[[1]][,1:3]
 
-DCCtest(Dat, garchOrder = c(1,1), n.lags = 1, solver = "solnp", solver.control = list(), cluster = NULL, Z = NULL)
+DCCtest(Dat, garchOrder = c(1,1), n.lags = 2, solver = "solnp", solver.control = list(), cluster = NULL, Z = NULL)
 
 simulationDCC<-dccsim(?)
 
@@ -128,3 +128,51 @@ y<-ugarchpath(spec, n.sim=3000, n.start=1000, m.sim=3)
 
 
 
+fit1@mfit$convergence
+
+
+simulationCCC <- cgarchsim(fit1, n.sim = 3000, m.sim = 1, startMethod = "sample", cluster=cluster,rseed=1)
+y<-simulationCCC@msim$simX[[1]][,1:3]
+DCCtest(y, garchOrder = c(1,1), n.lags = 2, solver = "solnp",
+        solver.control = list(), cluster = NULL, Z = NULL)
+
+
+simulationDCC<-dccsim( fit_dcc_symulacja@mfit$coef,n.sim=3000,n.start=1000,m.sim=1, rseed=1)
+y<-simulationDCC@msim$simX[[1]][,1:3]
+DCCtest(y, garchOrder = c(1,1), n.lags = 2, solver = "solnp",
+        solver.control = list(), cluster = NULL, Z = NULL)
+
+simulationDCC<-dccsim(fit_dcc_symulacja,n.sim=3000,n.start=1000,m.sim=1, rseed=1)
+
+fit_dcc_symulacja@mfit$coef[13]=0.4
+fit_dcc_symulacja@mfit$coef[14]=0.2
+fit_dcc_symulacja@mfit$coef
+fit_dcc_symulacja@mfit$matcoef
+fit_dcc_symulacja@mfit$matcoef[13]=0.4
+fit_dcc_symulacja@mfit$matcoef[14]=0.2
+fit_dcc_symulacja
+
+simulationDCC<-dccsim(fit_dcc_symulacja,n.sim=3000,n.start=1000,m.sim=1, rseed=1)
+y<-simulationDCC@msim$simX[[1]][,1:3]
+DCCtest(y, garchOrder = c(1,1), n.lags = 2, solver = "solnp",
+        solver.control = list(), cluster = NULL, Z = NULL)
+
+simulationDCC<-dccsim(fit_dcc,n.sim=3000,n.start=1000,m.sim=1, rseed=9)
+y<-simulationDCC@msim$simX[[1]][,1:3]
+DCCtest(y, garchOrder = c(1,1), n.lags = 2, solver = "solnp",
+        solver.control = list(), cluster = NULL, Z = NULL)
+
+plot(simulation@msim$simR[[1]][1,2,],type="l",ylim=c(0.2,0.6))
+plot(y)
+plot(DCCtest)
+# WYKRES DLA WARUNKOWYCH KORELACJI
+plot(simulation@msim$simR[[1]][1,2,],type="l",ylim=c(-1,1))
+
+# WYKRES DLA WARUNKOWYCH KORELACJI PRZY ODRZUCENIU HIPOTEZY 0
+
+#########
+plot(fit_dcc, which = 4, series = c(1, 3))
+plot(fit_dcc, which = 4, series = c(2, 3))
+
+
+# Zadanie 5 do domu
