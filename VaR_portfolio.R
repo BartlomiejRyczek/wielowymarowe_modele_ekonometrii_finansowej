@@ -145,3 +145,5 @@ print(VaRTest(alfa, V_portfolio[-1], VaR_Long_portfolio))
 # nie ma podstaw do odrzcenia hipoezy 0 ze przekroczenia wyosza 5%
 
 
+sum(portfolio_returns<(-VaR_Long_returns))/length(portfolio_returns)
+
